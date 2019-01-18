@@ -64,6 +64,6 @@ class EsSearchExporterHandler(BaseHTTPRequestHandler):
 def start_http_server(config, port, kerberos, tls):
     GetHandler = lambda *args, **kwargs: EsSearchExporterHandler(
         config, kerberos, tls, *args, **kwargs)
-    server = HTTPServer((port), GetHandler)
-    print('Starting server, use <Ctrl-C> to stop', config)
+    server = HTTPServer(('',port), GetHandler)
+    print('Starting server, use <Ctrl-C> to stop\n', config)
     server.serve_forever()
