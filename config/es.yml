@@ -1,0 +1,24 @@
+---
+searches:
+  example:
+    name: "example name"
+    prometheus_tags:
+    - hostname
+    - tag
+    es_index: "example-*"
+    es_host: "localhost:9200"
+    es_query:
+      size: 50
+      query:
+        bool:
+          must:
+          - match_all: {}
+          - match_phrase:
+              service.type:
+                query: abc
+          - range:
+              "@timestamp":
+                gte: now-5m
+                lte: now
+    timestamp_tag: "@timestamp"
+
