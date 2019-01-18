@@ -6,6 +6,13 @@
 pip install es_data_exporter
 ```
 
+## Run in docker
+
+```sh
+docker run -it --name es_data_exporter -p 9145:9145 --rm -v config.yml:/config.yml kasen/es_data_exporter --config=/config.yml
+```
+
+
 ### ES Search Exporter Configuration
 
 You will need to add your Elasticsearch query to the searches hash in es.yml.
