@@ -1,7 +1,13 @@
 FROM python:3.7
 
-RUN pip install es_data_exporter
+ADD . /es_data_exporter
+
+WORKDIR /es_data_exporter
+
+RUN pip install -r requirements.txt
 
 EXPOSE 9145
 
-ENTRYPOINT ["es_data_exporter"]
+VOLUME [ "/es_data_exporter/config/" ]
+
+ENTRYPOINT ["./scripts/run"]

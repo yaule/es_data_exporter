@@ -34,11 +34,11 @@ class EsSearchExporterHandler(BaseHTTPRequestHandler):
                 self.send_response(400)
                 self.end_headers()
                 self.wfile.write(
-                    b"Search {} not found in config".format(search))
+                    "Search {} not found in config".format(search).encode())
                 return
             try:
-                output = collector.search_es(config['searches']
-                                             [search], self._kerberos, self._tls)
+                output = collector.search_es(
+                    config['searches'][search], self._kerberos, self._tls)
                 self.send_response(200)
                 self.end_headers()
                 self.wfile.write(output)
@@ -64,6 +64,6 @@ class EsSearchExporterHandler(BaseHTTPRequestHandler):
 def start_http_server(config, port, kerberos, tls):
     GetHandler = lambda *args, **kwargs: EsSearchExporterHandler(
         config, kerberos, tls, *args, **kwargs)
-    server = HTTPServer(('',port), GetHandler)
+    server = HTTPServer(('', port), GetHandler)
     print('Starting server, use <Ctrl-C> to stop\n', config)
     server.serve_forever()
