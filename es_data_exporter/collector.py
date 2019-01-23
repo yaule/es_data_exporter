@@ -36,7 +36,7 @@ def search_es(config, kerberos, tls):
             es_list.append(x.get("_source"))
         df = json_normalize(es_list)
         for _, rows in df.iterrows():
-            rows.dropna(axis=1, how="any", inplace=True)
+            rows.dropna(axis=0, how="any", inplace=True)
             df_keys = rows.keys()
             row = rows.to_dict()
             stats_tags = ""
