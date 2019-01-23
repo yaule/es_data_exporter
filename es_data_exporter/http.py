@@ -29,6 +29,7 @@ class EsSearchExporterHandler(BaseHTTPRequestHandler):
                 msg = "Missing 'search' from parameters %s" % params["searcdh"]
                 self.wfile.write(msg.encode())
                 return
+            output_data = b""
             for search in params["search"]:
                 if search not in config["searches"]:
                     self.send_response(400)
@@ -41,13 +42,17 @@ class EsSearchExporterHandler(BaseHTTPRequestHandler):
                     output = collector.search_es(
                         config["searches"][search], self._kerberos, self._tls
                     )
-                    self.send_response(200)
-                    self.end_headers()
-                    self.wfile.write(output)
+                    output_data = output_data + output
+
                 except:
                     self.send_response(500)
                     self.end_headers()
                     self.wfile.write(traceback.format_exc().encode())
+
+            self.send_response(200)
+            self.end_headers()
+            self.wfile.write(output_data)
+
         elif url.path == "/":
             self.send_response(200)
             self.end_headers()
