@@ -19,6 +19,8 @@ You will need to add your Elasticsearch query to the searches hash in es.yml.
 This could also be a JSON file as well if that would make it easier (JSON is valid
 YAML, and most tools like Kibana can produce a JSON version of your query).
 
+Support full es query!
+
 ### Prometheus Job Configuration
 
 ```

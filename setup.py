@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="es_data_exporter",
-    version="0.1.3",
+    version="0.1.4",
     author="kasen",
     author_email="kasen@outlook.com",
     description=("Elasticsearch data exporter to the Prometheus ."),
