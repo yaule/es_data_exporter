@@ -1,4 +1,4 @@
-pyyaml==3.13
-requests==2.21.0
-requests-kerberos==0.12.0
-pandas==0.23.4
+pyyaml
+requests
+requests-kerberos
+pandas
